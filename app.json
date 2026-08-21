@@ -25,7 +25,6 @@
       },
       "permissions": [
         "android.permission.CAMERA",
-        "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
       "package": "com.ashraf_damzz.boostentry"
@@ -43,10 +42,14 @@
         {
           "photosPermission": "Allow BoostEntry to access your photos to upload invoices."
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "ec991232-7812-41d7-8c48-0f3ab68b829b"
+      }
     }
   }
 }
