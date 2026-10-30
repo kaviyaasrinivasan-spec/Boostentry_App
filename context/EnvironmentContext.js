@@ -5,7 +5,7 @@ import { setBaseURL } from '../services/api';
 const EnvironmentContext = createContext({});
 
 export const ENV_URLS = {
-  PROD: 'https://kssroadways.boostentryai.com',
+  PROD: 'https://kssroadways.axioralabs.ai',
   UAT: 'https://uat.boostentryai.com',
 };
 

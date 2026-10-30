@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let API_BASE = 'https://kssroadways.boostentryai.com';
+let API_BASE = 'https://kssroadways.axioralabs.ai';
 
 const api = axios.create({
   baseURL: API_BASE,
@@ -46,10 +46,14 @@ export const uploadDocument = async ({ clientId, docFormatId, uploadedBy, pageCo
 
   let idx = 0;
   for (const file of files) {
+    // Keep the real type/extension so the server processes PDFs as PDFs (not as .jpg images)
+    const isPdf = file.mimeType === 'application/pdf' || /\.pdf$/i.test(file.name || '') || /\.pdf$/i.test(file.uri || '');
+    const type = isPdf ? 'application/pdf' : (file.mimeType || 'image/jpeg');
+    const ext = isPdf ? 'pdf' : (type.split('/')[1] || 'jpg').replace('jpeg', 'jpg');
     fd.append('files', {
       uri: file.uri,
-      type: file.mimeType || 'image/jpeg',
-      name: `upload_page_${idx + 1}_${Date.now()}.jpg`,
+      type,
+      name: `upload_page_${idx + 1}_${Date.now()}.${ext}`,
     });
     idx++;
   }
